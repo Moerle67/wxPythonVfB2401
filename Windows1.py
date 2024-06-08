@@ -20,9 +20,12 @@ _ = gettext.gettext
 class MyWindow1 ( wx.Frame ):
 
     def __init__( self, parent ):
+        print("(von wxBuilder erzeugte Klasse) Orginal Hauptfenster wird initialisiert")
         wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = _(u"Mein erstes Fenster"), pos = wx.DefaultPosition, size = wx.Size( 640,339 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
 
-        self.SetSizeHints( wx.DefaultSize, wx.DefaultSize )
+        self.SetSizeHints( wx.Size( 500,300 ), wx.DefaultSize )
+        self.SetForegroundColour( wx.Colour( 255, 0, 0 ) )
+        self.SetBackgroundColour( wx.SystemSettings.GetColour( wx.SYS_COLOUR_HIGHLIGHT ) )
 
         bSizer1 = wx.BoxSizer( wx.VERTICAL )
 
@@ -76,6 +79,7 @@ class MyWindow1 ( wx.Frame ):
 
         # Connect Events
         self.btn_save.Bind( wx.EVT_BUTTON, self.OnBtnSaveClicked )
+        self.btn_cancel.Bind( wx.EVT_BUTTON, self.OnBtnCancelClicked )
 
     def __del__( self ):
         pass
@@ -83,6 +87,11 @@ class MyWindow1 ( wx.Frame ):
 
     # Virtual event handlers, override them in your derived class
     def OnBtnSaveClicked( self, event ):
+        print("wird überschrieben")
+        event.Skip()
+
+    def OnBtnCancelClicked( self, event ):
+        print("wird überschrieben")
         event.Skip()
 
 
