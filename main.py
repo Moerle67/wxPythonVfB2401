@@ -1,5 +1,5 @@
 import Windows1, wx, sqlite3
-
+#----------------------------------------------------------------------------------------------------------------------------------
 # Klasse für Datenbankverwaltung (Model)
 class MyDatabase(object):
     def __init__(self, name="database.db"):
@@ -8,6 +8,7 @@ class MyDatabase(object):
         self.con = sqlite3.connect(self.name)   # Verbindung herstellen
         self.cur = self.con.cursor()            # Cursor (Zeiger) erstellen
 
+#----------------------------------------------------------------------------------------------------------------------------------
 # Klasse für graphische Oberfläche (erbt von WXBuilder und verarbeitet )
 class WorkWindows1(Windows1.MyWindow1):
     def __init__( self, parent, dbase ):
@@ -32,7 +33,7 @@ class WorkWindows1(Windows1.MyWindow1):
         self.txtctl_comment.SetValue("")
         event.Skip()
 
-
+#----------------------------------------------------------------------------------------------------------------------------------
 # Klasse für Verarbeitung (Controling)
 class MainApp(wx.App):
     def OnInit(self):
@@ -48,6 +49,7 @@ class MainApp(wx.App):
        self.fenster1.Show(True)                             # Fenster wird angezeigt
        return True
 
+#----------------------------------------------------------------------------------------------------------------------------------
 # Startet App-KLasse wenn das laufende Modul das Startmodul (__main__) ist
 if __name__ == '__main__':
     print("(Main) Hauptprogramm")

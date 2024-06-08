@@ -20,12 +20,9 @@ _ = gettext.gettext
 class MyWindow1 ( wx.Frame ):
 
     def __init__( self, parent ):
-        print("(von wxBuilder erzeugte Klasse) Orginal Hauptfenster wird initialisiert")
-        wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = _(u"Mein erstes Fenster"), pos = wx.DefaultPosition, size = wx.Size( 640,339 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
+        wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = _(u"Mein erstes Fenster"), pos = wx.DefaultPosition, size = wx.Size( 640,325 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
 
-        self.SetSizeHints( wx.Size( 500,300 ), wx.DefaultSize )
-        self.SetForegroundColour( wx.Colour( 255, 0, 0 ) )
-        self.SetBackgroundColour( wx.SystemSettings.GetColour( wx.SYS_COLOUR_HIGHLIGHT ) )
+        self.SetSizeHints( wx.DefaultSize, wx.DefaultSize )
 
         bSizer1 = wx.BoxSizer( wx.VERTICAL )
 
@@ -63,10 +60,10 @@ class MyWindow1 ( wx.Frame ):
         bSizer2 = wx.BoxSizer( wx.HORIZONTAL )
 
         self.btn_save = wx.Button( self, wx.ID_ANY, _(u"Speichern"), wx.DefaultPosition, wx.DefaultSize, 0 )
-        bSizer2.Add( self.btn_save, 1, wx.ALL|wx.EXPAND, 5 )
+        bSizer2.Add( self.btn_save, 1, wx.ALL, 5 )
 
         self.btn_cancel = wx.Button( self, wx.ID_ANY, _(u"Abbrechen"), wx.DefaultPosition, wx.DefaultSize, 0 )
-        bSizer2.Add( self.btn_cancel, 1, wx.ALL|wx.EXPAND, 5 )
+        bSizer2.Add( self.btn_cancel, 1, wx.ALL, 5 )
 
 
         bSizer1.Add( bSizer2, 1, wx.EXPAND, 5 )
@@ -79,7 +76,6 @@ class MyWindow1 ( wx.Frame ):
 
         # Connect Events
         self.btn_save.Bind( wx.EVT_BUTTON, self.OnBtnSaveClicked )
-        self.btn_cancel.Bind( wx.EVT_BUTTON, self.OnBtnCancelClicked )
 
     def __del__( self ):
         pass
@@ -87,11 +83,6 @@ class MyWindow1 ( wx.Frame ):
 
     # Virtual event handlers, override them in your derived class
     def OnBtnSaveClicked( self, event ):
-        print("wird überschrieben")
-        event.Skip()
-
-    def OnBtnCancelClicked( self, event ):
-        print("wird überschrieben")
         event.Skip()
 
 
