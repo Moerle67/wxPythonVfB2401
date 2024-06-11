@@ -8,8 +8,24 @@ class MyDatabase(object):
         self.con = sqlite3.connect(self.name)   # Verbindung herstellen
         self.cur = self.con.cursor()            # Cursor (Zeiger) erstellen
 
+        # Tabellen neu erstellen
+
+        self.create_tables()
         # Es geht weiter ....
-    
+
+    def create_tables(self):
+        # Tabelle Messages
+        sql = """
+        CREATE TABLE IF NOT EXISTS message (
+            id              INTEGER PRIMARY KEY AUTOINCREMENT,
+            name            VARCHAR(100) NOT NULL,
+            email           VARCHAR(100) NOT NULL,
+            message         TEXT NOT NULL,
+            date            DATETIME DEFAULT current_timestamp
+        )
+        """
+        self.cur.execute(sql)
+
 #----------------------------------------------------------------------------------------------------------------------------------
 # Klasse für graphische Oberfläche (erbt von WXBuilder und verarbeitet )
 class WorkWindows1(Windows1.MyWindow1):
