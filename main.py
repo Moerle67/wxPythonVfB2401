@@ -29,9 +29,9 @@ class MyDatabase(object):
 
     def save_message(self, name, email, comment):
         # Message speichern
-        sql = f" INSERT INTO msg (username, email, message) VALUES ('{name}', '{email}', '{comment}');"
+        sql = " INSERT INTO msg (username, email, message) VALUES (?, ?, ?);"
 
-        self.cur.execute(sql)
+        self.cur.execute(sql, (name, email, comment))
         self.con.commit()
 
 #----------------------------------------------------------------------------------------------------------------------------------
