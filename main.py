@@ -8,6 +8,8 @@ class MyDatabase(object):
         self.con = sqlite3.connect(self.name)   # Verbindung herstellen
         self.cur = self.con.cursor()            # Cursor (Zeiger) erstellen
 
+        # Es geht weiter ....
+    
 #----------------------------------------------------------------------------------------------------------------------------------
 # Klasse für graphische Oberfläche (erbt von WXBuilder und verarbeitet )
 class WorkWindows1(Windows1.MyWindow1):
