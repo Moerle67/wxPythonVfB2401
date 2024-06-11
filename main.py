@@ -16,15 +16,23 @@ class MyDatabase(object):
     def create_tables(self):
         # Tabelle Messages
         sql = """
-        CREATE TABLE IF NOT EXISTS message (
+        CREATE TABLE IF NOT EXISTS msg (
             id              INTEGER PRIMARY KEY AUTOINCREMENT,
-            name            VARCHAR(100) NOT NULL,
+            username        VARCHAR(100) NOT NULL,
             email           VARCHAR(100) NOT NULL,
             message         TEXT NOT NULL,
             date            DATETIME DEFAULT current_timestamp
-        )
+        );
         """
         self.cur.execute(sql)
+        self.con.commit()
+
+    def save_message(self, name, email, comment):
+        # Message speichern
+        sql = f" INSERT INTO msg (username, email, message) VALUES ('{name}', '{email}', '{comment}');"
+
+        self.cur.execute(sql)
+        self.con.commit()
 
 #----------------------------------------------------------------------------------------------------------------------------------
 # Klasse für graphische Oberfläche (erbt von WXBuilder und verarbeitet )
@@ -41,6 +49,8 @@ class WorkWindows1(Windows1.MyWindow1):
         name = self.txtctl_name.GetValue()
         email = self.txtctl_mail.GetValue()
         comment = self.txtctl_comment.GetValue()
+        self.dbase.save_message(name, email, comment)
+
         print(f"Sie haben '{name}', '{email}' und '{comment}' eingegeben.")
         event.Skip()
 
